@@ -1,3 +1,6 @@
+/* eslint flowtype/require-valid-file-annotation: 0 */
+/* eslint flowtype/require-variable-type: 0 */
+
 const {expect, assert} = require('chai');
 const linear = require('./');
 
@@ -42,7 +45,7 @@ describe('linear', () => {
                     done();
                 }
             })
-        }
+        };
 
         const context = new Context('Martin');
 
@@ -62,5 +65,4 @@ describe('linear', () => {
         myLinear(_arguments);
     });
 
-})
-
+});
