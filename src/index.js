@@ -8,10 +8,7 @@ function linear(wait: Wait): Function {
     const timeouts = {},
         delays = Object.keys(wait);
 
-    return (): void => {
-        const args = arguments,
-            context = this;
-
+    return function(...args): void {
         delays.forEach((delay) => {
             clearTimeout(timeouts[delay]);
 
@@ -22,10 +19,10 @@ function linear(wait: Wait): Function {
             const int = parseInt(delay, 10);
 
             if (!int) {
-                return wait[delay].apply(context, args);
+                return wait[delay].apply(this, ...args);
             }
 
-            timeouts[delay] = setTimeout(() => wait[delay].apply(context, args), int);
+            timeouts[delay] = setTimeout(() => wait[delay].apply(this, ...args), int);
         });
     }
 }
