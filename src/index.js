@@ -4,14 +4,15 @@ type Wait = {
     [milliseconds: string]: Function
 };
 
+type Timeouts = {
+    [delay: string]: number
+};
+
 function linear(wait: Wait): Function {
-    const timeouts = {},
-        delays = Object.keys(wait);
+    const timeouts: Timeouts = {},
+        delays: Array<string> = Object.keys(wait);
 
-    return (): void => {
-        const args = arguments,
-            context = this;
-
+    return function(...args): void {
         delays.forEach((delay) => {
             clearTimeout(timeouts[delay]);
 
@@ -19,15 +20,15 @@ function linear(wait: Wait): Function {
                 return;
             }
 
-            const int = parseInt(delay, 10);
+            const int: number = parseInt(delay, 10);
 
             if (!int) {
-                return wait[delay].apply(context, args);
+                return wait[delay].apply(this, ...args);
             }
 
-            timeouts[delay] = setTimeout(() => wait[delay].apply(context, args), int);
+            timeouts[delay] = setTimeout(() => wait[delay].apply(this, ...args), int);
         });
-    }
+    };
 }
 
 export default linear;
