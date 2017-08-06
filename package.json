@@ -1,6 +1,6 @@
 {
   "name": "linear-debounce",
-  "version": "0.0.2-rc.1",
+  "version": "0.0.2",
   "description": "Multiple debounce actions sequencer",
   "main": "./dist/linear.min.js",
   "author": "Evyatar <evyatar.a@fiverr.com>",
