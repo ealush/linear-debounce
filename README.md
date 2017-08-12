@@ -9,5 +9,17 @@ window.addEventListener('scroll', linear({
     '0': () => console.log('this will happen immediately'),
     '2500': () => console.log('this will happen after 2.5 seconds'),
     '5000': () => console.log('this will happen after 5 seconds'),
-}))
+}));
+```
+
+It is also possible to pass multiple functions to fire on the same delay using an array of functions:
+
+```js
+window.addEventListener('scroll', linear({
+    '2500': [
+        () => console.log('this will happen after 2.5 seconds'),
+        () => console.log('this will happen after 2.5 seconds'),
+        () => console.log('this will happen after 2.5 seconds')
+    ]
+}));
 ```

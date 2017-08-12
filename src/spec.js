@@ -14,16 +14,16 @@ describe('linear', () => {
     it('calls all the things', (done) => {
         const callbacks = {
             '20': imdone,
-            '10': imdone,
+            '10': [imdone, 'noFire'],
             '40': imdone,
-            '1.4': imdone
+            '1.4': 'noFire',
+            '300': [imdone, imdone, imdone, imdone, 'noFire']
         };
 
-        let counter = Object.keys(callbacks).length;
+        let counter = 7;
 
         function imdone() {
             counter--;
-
             if (!counter) {
                 done();
             }
@@ -38,12 +38,26 @@ describe('linear', () => {
                 this.name = name;
             }
         }
+
+        let counter = 2;
+
+        function imdone() {
+            counter--;
+            if (!counter) {
+                done();
+            }
+        }
+
         Context.prototype = {
             checkContext: linear({
                 '10': function() {
                     expect(this.name).to.equal('Martin');
-                    done();
-                }
+                    imdone();
+                },
+                '15': [function() {
+                    expect(this.name).to.equal('Martin');
+                    imdone();
+                }]
             })
         };
 
@@ -54,11 +68,23 @@ describe('linear', () => {
 
     it('passes through function arguments', (done) => {
         const _arguments = [1, 2, 3, 'f'];
+        let counter = 2;
+
+        function imdone() {
+            counter--;
+            if (!counter) {
+                done();
+            }
+        };
 
         const myLinear = linear({
-            '10': function(...args) {
+            '10': [function(...args) {
                 expect(args).to.deep.equal(_arguments);
-                done();
+                imdone();
+            }],
+            '120': function(...args) {
+                expect(args).to.deep.equal(_arguments);
+                imdone();
             }
         });
 

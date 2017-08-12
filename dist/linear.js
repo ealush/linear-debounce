@@ -86,31 +86,49 @@ Object.defineProperty(exports, "__esModule", {
 
 
 function linear(wait) {
-    var _arguments = arguments,
-        _this = this;
-
     var timeouts = {},
         delays = Object.keys(wait);
 
     return function () {
-        var args = _arguments,
-            context = _this;
+        var _this = this;
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
 
         delays.forEach(function (delay) {
             clearTimeout(timeouts[delay]);
 
-            if (typeof wait[delay] !== 'function') {
+            var current = wait[delay];
+
+            if (typeof current !== 'function' && !Array.isArray(current)) {
                 return;
             }
 
             var int = parseInt(delay, 10);
 
             if (!int) {
-                return wait[delay].apply(context, args);
+
+                if (Array.isArray(current)) {
+                    for (var i = 0; i < current.length; i++) {
+                        var _current$i;
+
+                        typeof current[i] === 'function' && (_current$i = current[i]).apply.apply(_current$i, [_this].concat(args));
+                    }
+                    return;
+                }
+                return current.apply.apply(current, [_this].concat(args));
             }
 
             timeouts[delay] = setTimeout(function () {
-                return wait[delay].apply(context, args);
+                if (!Array.isArray(current)) {
+                    current.apply.apply(current, [_this].concat(args));
+                }
+                for (var _i = 0; _i < current.length; _i++) {
+                    var _current$_i;
+
+                    typeof current[_i] === 'function' && (_current$_i = current[_i]).apply.apply(_current$_i, [_this].concat(args));
+                }
             }, int);
         });
     };
