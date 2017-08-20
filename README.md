@@ -1,4 +1,6 @@
 # LINEAR
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/patuach/linear.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/patuach/linear.svg?branch=master)](https://travis-ci.org/patuach/linear) [![npm version](https://badge.fury.io/js/linear-debounce.svg)](https://badge.fury.io/js/linear-debounce)
 
 ```npm install linear-debounce```
