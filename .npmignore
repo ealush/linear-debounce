@@ -9,3 +9,4 @@ webpack.config.js
 yarn.lock
 dist/linear.js
 dist/linear.js.map
+playground
