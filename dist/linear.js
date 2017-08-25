@@ -89,7 +89,15 @@ function linear(wait) {
     var timeouts = {},
         delays = Object.keys(wait);
 
-    return function () {
+    function cancel() {
+        for (var timeout in timeouts) {
+            if (timeouts.hasOwnProperty(timeout)) {
+                clearTimeout(timeouts[timeout]);
+            }
+        }
+    }
+
+    function debouncer() {
         var _this = this;
 
         for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
@@ -132,6 +140,9 @@ function linear(wait) {
             }, int);
         });
     };
+
+    debouncer.cancel = cancel;
+    return debouncer;
 }
 
 exports.default = linear;

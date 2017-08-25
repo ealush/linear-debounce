@@ -28,3 +28,18 @@ window.addEventListener('scroll', linear({
     ]
 }));
 ```
+
+Sometimes you would want to cancel the already initiated events from being fired, for example, when your app's state changes and you do not expect the debounced actions anymore. To cancel the events, simply call `cancel`:
+
+```js
+ const isTypingDebouncer = linear({
+    '0': () => this.setState({userTyping: true}),
+    '3000': () => this.setState({userTyping: false})
+});
+
+isTypingDebouncer(); // initiates the debounced actions
+
+isTypingDebouncer.cancel(); // clears existing timeouts, in our case, only `0` will fire.
+```
+
+Note: Calling `cancel` will not prevent future timeouts from being created. It only clears the ones that have already initiated. Calling `isTypingDebouncer` again, for example, will re-start the count.

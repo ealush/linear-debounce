@@ -1,4 +1,4 @@
 ./dist/*
 ./dev/*
 ./node_modules/*
-./playground
+./playground/index.js

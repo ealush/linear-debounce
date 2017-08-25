@@ -15,9 +15,9 @@ describe('linear', () => {
         const callbacks = {
             '20': imdone,
             '10': [imdone, 'noFire'],
-            '40': imdone,
+            '22': imdone,
             '1.4': 'noFire',
-            '300': [imdone, imdone, imdone, imdone, 'noFire']
+            '30': [imdone, imdone, imdone, imdone, 'noFire']
         };
 
         let counter = 7;
@@ -82,7 +82,7 @@ describe('linear', () => {
                 expect(args).to.deep.equal(_arguments);
                 imdone();
             }],
-            '120': function(...args) {
+            '30': function(...args) {
                 expect(args).to.deep.equal(_arguments);
                 imdone();
             }
@@ -90,5 +90,25 @@ describe('linear', () => {
 
         myLinear(_arguments);
     });
+
+    it('stops execution after using the cancel function', () => {
+
+        let counter = 5;
+
+        function decrement() { counter--; }
+
+        const debouncer = linear({
+            '0': decrement,
+            '100': decrement,
+            '150': decrement,
+            '200': decrement,
+            '202': decrement
+        });
+
+        linear({
+            '0': debouncer,
+            '100': [debouncer.cancel, () => expect(counter).to.equal(3)]
+        })();
+    }).timeout(300);
 
 });
