@@ -14,7 +14,11 @@ function linear(wait: Wait): Function {
     const timeouts: Timeouts = {},
         delays: Array<string> = Object.keys(wait);
 
-    return function(...args): void {
+    function cancel(): void {
+        Object.values(timeouts).forEach(clearTimeout);
+    }
+
+    function debouncer(...args: Array<mixed>): void {
         delays.forEach((delay) => {
             clearTimeout(timeouts[delay]);
 
@@ -25,7 +29,6 @@ function linear(wait: Wait): Function {
             }
 
             const int: number = parseInt(delay, 10);
-
 
             if (!int) {
 
@@ -46,6 +49,9 @@ function linear(wait: Wait): Function {
             }, int);
         });
     };
+
+    debouncer.cancel = cancel;
+    return debouncer;
 }
 
 export default linear;
