@@ -90,11 +90,12 @@ function linear(wait) {
         delays = Object.keys(wait);
 
     function cancel() {
-        for (var timeout in timeouts) {
-            if (timeouts.hasOwnProperty(timeout)) {
-                clearTimeout(timeouts[timeout]);
-            }
-        }
+        // for (const timeout: string in timeouts) {
+        //     if (timeouts.hasOwnProperty(timeout)) {
+        //         clearTimeout(timeouts[timeout]);
+        //     }
+        // }
+        Object.values(timeouts).forEach(clearTimeout);
     }
 
     function debouncer() {

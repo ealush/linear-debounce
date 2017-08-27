@@ -15,11 +15,7 @@ function linear(wait: Wait): Function {
         delays: Array<string> = Object.keys(wait);
 
     function cancel(): void {
-        for (const timeout: string in timeouts) {
-            if (timeouts.hasOwnProperty(timeout)) {
-                clearTimeout(timeouts[timeout]);
-            }
-        }
+        Object.values(timeouts).forEach(clearTimeout);
     }
 
     function debouncer(...args: Array<mixed>): void {
