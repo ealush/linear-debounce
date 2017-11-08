@@ -78,11 +78,11 @@ describe('linear', () => {
         };
 
         const myLinear = linear({
-            '10': [function(...args) {
+            '10': [function(args) {
                 expect(args).to.deep.equal(_arguments);
                 imdone();
             }],
-            '30': function(...args) {
+            '30': function(args) {
                 expect(args).to.deep.equal(_arguments);
                 imdone();
             }

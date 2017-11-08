@@ -90,11 +90,6 @@ function linear(wait) {
         delays = Object.keys(wait);
 
     function cancel() {
-        // for (const timeout: string in timeouts) {
-        //     if (timeouts.hasOwnProperty(timeout)) {
-        //         clearTimeout(timeouts[timeout]);
-        //     }
-        // }
         Object.values(timeouts).forEach(clearTimeout);
     }
 
@@ -120,23 +115,19 @@ function linear(wait) {
 
                 if (Array.isArray(current)) {
                     for (var i = 0; i < current.length; i++) {
-                        var _current$i;
-
-                        typeof current[i] === 'function' && (_current$i = current[i]).apply.apply(_current$i, [_this].concat(args));
+                        typeof current[i] === 'function' && current[i].apply(_this, args);
                     }
                     return;
                 }
-                return current.apply.apply(current, [_this].concat(args));
+                return current.apply(_this, args);
             }
 
             timeouts[delay] = setTimeout(function () {
                 if (!Array.isArray(current)) {
-                    current.apply.apply(current, [_this].concat(args));
+                    current.apply(_this, args);
                 }
                 for (var _i = 0; _i < current.length; _i++) {
-                    var _current$_i;
-
-                    typeof current[_i] === 'function' && (_current$_i = current[_i]).apply.apply(_current$_i, [_this].concat(args));
+                    typeof current[_i] === 'function' && current[_i].apply(_this, args);
                 }
             }, int);
         });

@@ -34,17 +34,17 @@ function linear(wait: Wait): Function {
 
                 if (Array.isArray(current)) {
                     for (let i: number = 0; i < current.length; i++) {
-                        typeof current[i] === 'function' && current[i].apply(this, ...args);
+                        typeof current[i] === 'function' && current[i].apply(this, args);
                     }
                     return;
                 }
-                return current.apply(this, ...args);
+                return current.apply(this, args);
             }
 
             timeouts[delay] = setTimeout(() => {
-                if (!Array.isArray(current)) { current.apply(this, ...args); }
+                if (!Array.isArray(current)) { current.apply(this, args); }
                 for (let i: number = 0; i < current.length; i++) {
-                    typeof current[i] === 'function' && current[i].apply(this, ...args);
+                    typeof current[i] === 'function' && current[i].apply(this, args);
                 }
             }, int);
         });
