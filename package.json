@@ -33,7 +33,7 @@
     "babel-preset-flow": "^6.23.0",
     "chai": "^4.0.2",
     "eslint": "^4.1.1",
-    "eslint-loader": "^ 1.8.0",
+    "eslint-loader": "^2.1.2",
     "eslint-plugin-flowtype": "^2.34.0",
     "flow-bin": "^0.60.0",
     "mocha": "^4.0.0",
