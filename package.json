@@ -1,6 +1,6 @@
 {
   "name": "linear-debounce",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Multiple debounce actions sequencer",
   "main": "./dist/linear.min.js",
   "author": "Evyatar <evyatar.a@fiverr.com>",
@@ -16,12 +16,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/patuach/linear.git"
+    "url": "git+https://github.com/ealush/linear-debounce.git"
   },
   "bugs": {
-    "url": "https://github.com/patuach/linear/issues"
+    "url": "https://github.com/ealush/linear-debounce/issues"
   },
-  "homepage": "https://github.com/patuach/linear#readme",
+  "homepage": "https://github.com/ealush/linear-debounce#readme",
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",

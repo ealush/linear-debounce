@@ -1,7 +1,7 @@
 # LINEAR
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/patuach/linear.svg)](https://greenkeeper.io/)
-[![Build Status](https://travis-ci.org/patuach/linear.svg?branch=master)](https://travis-ci.org/patuach/linear) [![npm version](https://badge.fury.io/js/linear-debounce.svg)](https://badge.fury.io/js/linear-debounce)
+[![Greenkeeper badge](https://badges.greenkeeper.io/ealush/linear-debounce.svg)](https://greenkeeper.io/)
+[![Build Status](https://travis-ci.org/ealush/linear-debounce.svg?branch=master)](https://travis-ci.org/ealush/linear-debounce) [![npm version](https://badge.fury.io/js/linear-debounce.svg)](https://badge.fury.io/js/linear-debounce)
 
 ```npm install linear-debounce```
 
