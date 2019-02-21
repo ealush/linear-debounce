@@ -7,7 +7,7 @@
 		exports["linear"] = factory();
 	else
 		root["linear"] = factory();
-})(this, function() {
+})(typeof self !== 'undefined' ? self : this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
