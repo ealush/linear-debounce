@@ -37,6 +37,6 @@
     "eslint-plugin-flowtype": "^2.34.0",
     "flow-bin": "^0.60.0",
     "mocha": "^4.0.0",
-    "webpack": "^3.4.1"
+    "webpack": "^4.32.2"
   }
 }
